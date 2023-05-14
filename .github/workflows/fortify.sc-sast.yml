@@ -11,7 +11,7 @@ on:
 jobs:                                                  
   Fortify-SAST:
     # Use the appropriate runner for building your source code
-    runs-on: windows-2019	
+    runs-on: self-hosted	
 
     steps:
       # Check out source code
@@ -45,7 +45,7 @@ jobs:
       #   ScanCentral Client will download dependencies for maven, gradle and msbuild projects.
       #   For other build tools, add your build commands to the workflow to download necessary dependencies and prepare according to Fortify SCA documentation.
       - name: Perform SAST Scan
-        run: scancentral -url http://192.168.10.27:8280/scancentral-ctrl/ start -bt mvn -upload -application "$env:APPLICATION" -version "$env:VERSION" -uptoken "$env:SSC_UPLOAD_TOKEN"
+        run: scancentral -url "$env:SC_CONTROLLER_URL" start -bt mvn -upload -application "$env:APPLICATION" -version "$env:VERSION" -uptoken "$env:SSC_UPLOAD_TOKEN"
         env:                                            
           SC_CONTROLLER_URL: ${{ secrets.SC_CONTROLLER_URL }}
           SSC_UPLOAD_TOKEN: ${{ secrets.SSC_UPLOAD_TOKEN }}
