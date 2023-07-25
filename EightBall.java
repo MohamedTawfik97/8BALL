@@ -4,7 +4,6 @@ public class EightBall {
 	public static void main(String args[]) throws Exception {
 		char[] buffer = new char[1024];
 		String filename = args[0];
-		private String password = "mypassw0rd";
 		try {
 			filename = "" + (Integer.parseInt(filename) % 3);
 		} catch (Exception e) {
@@ -14,4 +13,3 @@ public class EightBall {
 		System.out.println(buffer);
 	}
 }
-
